@@ -3,11 +3,27 @@ const {
     Connector,
     TrackBackAgent,
     CredentialVerifier,
+    DecentralisedFileStoreConnector,
+    DefaultOptions,
 } = require('@trackback/agent')
 
 async function demo() {
-    const connector = new Connector()
-    const agent = new TrackBackAgent(connector)
+
+    const options = {
+        url: "ws://192.168.1.111:9944",
+        options: {...DefaultOptions.options}
+    };
+
+    const fileConn = new DecentralisedFileStoreConnector(
+        {
+            url: "http://192.168.1.111:3000",
+            api: "/api/0.1/",
+            decentralisedStoreURL: "http://192.168.1.111:8080/ipfs/"
+        }
+    );
+
+    const connector = new Connector((options));
+    const agent = new TrackBackAgent(connector, fileConn);
 
     const account = await connector.getDefaultAccount()
 
