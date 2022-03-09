@@ -24,28 +24,45 @@ docker run --name ipfs_host -v $ipfs_staging:/export -v $ipfs_data:/data/ipfs -p
 ```
 docker run  -p 0.0.0.0:9933:9933 -p 0.0.0.0:9944:9944 -p 0.0.0.0:30333:30333 trustalliance/trust-node:v0.0.1 --dev --tmp --ws-external
 ```
+* TrackBack Agent connection configuration 
+```node
+const options = {
+        url: "ws://192.168.1.111:9944",
+        options: {...DefaultOptions.options}
+    };
 
+    const fileConn = new DecentralisedFileStoreConnector(
+        {
+            url: "http://192.168.1.111:3000",
+            api: "/api/0.1/",
+            decentralisedStoreURL: "http://192.168.1.111:8080/ipfs/"
+        }
+    );
+
+    const connector = new Connector((options));
+    const agent = new TrackBackAgent(connector, fileConn);
+```
 * Build the MVP Demo docker image
 
-```
+```bash
 docker build -t mvp_demo . 
 ```
 
 
 * Run and log in to the `mvp-demo`  container
-```
+```bash
 docker run --rm -it aa /bin/sh
 ```
 
 * Run the application
-```
+```bash
 ~/app $ node index.js
 ```
 
 * You will see an output similar to this 
 
-```
-➜  mvp-demo git:(main) ✗ docker run --rm -it aa /bin/sh
+```bash
+➜  mvp-demo git:(main) ✗ docker run --rm -it mvp-demo /bin/sh
 ~/app $ node index.js 
 Unable to map u16 to a lookup index
 Unable to map u16 to a lookup index
