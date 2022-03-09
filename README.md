@@ -7,7 +7,7 @@ How to run
 ```javascript
 npm install
 nvm use 14
-npm run index.js
+node index.js
 ```
 
 
@@ -16,7 +16,7 @@ npm run index.js
 * Run IPFS 
 
 ```bash
-docker run --name ipfs_host -v $ipfs_staging:/export -v $ipfs_data:/data/ipfs -p 4001:4001 -p 0.0.0.0:8080:8080 -p 0.0.0.0:5001:5001 ipfs/go-ipfs:lates
+docker run --name ipfs_host -v $ipfs_staging:/export -v $ipfs_data:/data/ipfs -p 4001:4001 -p 0.0.0.0:8080:8080 -p 0.0.0.0:5001:5001 ipfs/go-ipfs:latest
 ```
 
 * Run Trust Alliance node
