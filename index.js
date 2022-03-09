@@ -9,11 +9,18 @@ const {
 
 async function demo() {
 
+    /**
+     * Pass the trust alliance node URL here
+     */
     const options = {
         url: "ws://192.168.1.111:9944",
         options: {...DefaultOptions.options}
     };
 
+    /**
+     * Pass the IPFS connector URL and 
+     * IPFS host URL here
+     */
     const fileConn = new DecentralisedFileStoreConnector(
         {
             url: "http://192.168.1.111:3000",
