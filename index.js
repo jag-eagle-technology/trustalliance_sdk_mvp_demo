@@ -3,11 +3,37 @@ const {
     Connector,
     TrackBackAgent,
     CredentialVerifier,
+    DecentralisedFileStoreConnector,
+    DefaultOptions,
 } = require('@trackback/agent')
 
 async function demo() {
-    const connector = new Connector()
-    const agent = new TrackBackAgent(connector)
+
+    /**
+     * Pass the trust alliance node URL here
+     */
+    const options = {
+        // Add host IP if you are running using docker
+        url: "ws://192.168.1.111:9944",
+        options: {...DefaultOptions.options}
+    };
+
+    /**
+     * Pass the IPFS connector URL and 
+     * IPFS host URL here
+     */
+    const fileConn = new DecentralisedFileStoreConnector(
+        {
+            // Add host IP if you are running using docker
+            url: "http://192.168.1.111:3000",
+            api: "/api/0.1/",
+            // Add host IP if you are running using docker
+            decentralisedStoreURL: "http://192.168.1.111:8080/ipfs/"
+        }
+    );
+
+    const connector = new Connector((options));
+    const agent = new TrackBackAgent(connector, fileConn);
 
     const account = await connector.getDefaultAccount()
 
