@@ -51,7 +51,7 @@ docker build -t mvp_demo .
 
 * Run and log in to the `mvp-demo`  container
 ```bash
-docker run --rm -it aa /bin/sh
+docker run --rm -it mvp-demo /bin/sh
 ```
 
 * Run the application
