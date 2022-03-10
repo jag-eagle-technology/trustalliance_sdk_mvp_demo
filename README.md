@@ -45,7 +45,7 @@ const options = {
 * Build the MVP Demo docker image
 
 ```bash
-docker build -t mvp_demo . 
+docker build -t mvp-demo . 
 ```
 
 
